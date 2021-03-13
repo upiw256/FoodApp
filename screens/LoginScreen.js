@@ -31,7 +31,7 @@ const Login = props =>{
                 style={[styles.textBody, { color: "blue" }]}
                 onPress={() => props.navigation.navigate("SignupScreen")}
               >
-                Sign Up
+                -Sign Up
               </Text>
             </View>
           </View>
