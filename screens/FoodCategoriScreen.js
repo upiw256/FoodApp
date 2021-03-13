@@ -1,20 +1,35 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Platform, FlatList } from 'react-native'
 import HeaderButton from '../components/HeaderButton'
-import {
-    HeaderButtons,
-    Item,
-  } from 'react-navigation-header-buttons';
+import { HeaderButtons, Item,} from 'react-navigation-header-buttons';
 import { HeaderTitle } from '@react-navigation/stack';
-import { Platform } from 'react-native';
 import color from '../constant/Color';
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout';
 import { DrawerActions } from '@react-navigation/native';
-const FoodCategoriScreen = props=>{
+import CategoriGridTile from '../components/CategoriGridTile';
+import {CATEGORIES} from '../data/dummy-data'
+const FoodCategoriScreen = (props)=>{
+
+    const renderGridItem = (ItemData)=>{
+        return(
+
+            <CategoriGridTile
+            title={ItemData.item.title}
+            onSelect={()=>{
+                console.log('tes')
+            }}
+            image={ItemData.item.urlImage}
+            />
+        )
+    }
+
     return(
-        <View>
-            <Text>Food</Text>
-        </View>
+        <FlatList
+        numColumns={2}
+        data={CATEGORIES}
+        renderItem={renderGridItem}
+        keyExtractor={(item,index) => item.id}
+        />
     )
 }
 
